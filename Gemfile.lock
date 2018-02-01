@@ -6,6 +6,7 @@ GEM
     rack (2.0.4)
     rack-protection (2.0.0)
       rack
+    rake (12.3.0)
     ruby_http_client (3.3.0)
     sendgrid-ruby (5.2.0)
       ruby_http_client (~> 3.2)
@@ -23,6 +24,7 @@ PLATFORMS
 
 DEPENDENCIES
   pg
+  rake
   sendgrid-ruby
   sequel
   sinatra

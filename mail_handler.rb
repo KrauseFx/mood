@@ -3,13 +3,12 @@ module Mood
     require 'sendgrid-ruby'
     include SendGrid
 
-    def self.send_question
+    def self.send_question(subject:)
       from = Email.new(email: "mood@krausefx.com")
       to = Email.new(email: "krausefx@gmail.com")
-      subject = "How are you feeling today?"
       content = Content.new(
         type: "text/plain",
-        value: "10: Excellent, excited and pumped\n0: Down, unhappy, not sure where to go"
+        value: "10: Excellent, excited & pumped - 0: Down & unhappy"
       )
       mail = Mail.new(from, subject, to, content)
 
@@ -18,10 +17,6 @@ module Mood
       puts response.status_code
       puts response.body
       puts response.headers
-    end
-
-    def self.receive_reply
-      
     end
   end
 end

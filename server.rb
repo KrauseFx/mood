@@ -5,10 +5,12 @@ require "json"
 require_relative "./database"
 require_relative "./mail_handler"
 
-# Mood::MailHandler.send_question
-
 class Main < Sinatra::Base
   enable :logging
+
+  get "/" do
+    
+  end
 
   post "/" do
     puts "hi"
