@@ -1,4 +1,5 @@
 .keys
+.DS_STORE
 
 *.gem
 *.rbc
