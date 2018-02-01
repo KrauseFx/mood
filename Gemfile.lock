@@ -1,0 +1,31 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mustermann (1.0.1)
+    pg (1.0.0)
+    rack (2.0.4)
+    rack-protection (2.0.0)
+      rack
+    ruby_http_client (3.3.0)
+    sendgrid-ruby (5.2.0)
+      ruby_http_client (~> 3.2)
+      sinatra (>= 1.4.7, < 3)
+    sequel (5.5.0)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    tilt (2.0.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pg
+  sendgrid-ruby
+  sequel
+  sinatra
+
+BUNDLED WITH
+   1.14.6
