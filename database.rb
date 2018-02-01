@@ -1,3 +1,5 @@
+require "sequel"
+
 module Mood
   class Database
     def self.database
