@@ -53,3 +53,11 @@ I want my bot to alert me when it detects a downwards trends. Similar to the sto
 I usually edit the 1SE videos slightly to have "subtitles" for some of the important life events. Additionally I throw in the classic [Every day of my life music](https://www.youtube.com/watch?v=m_xlkC2DsSI).
 
 Additionally with that data, I want to overlay my happiness level somehow, probably in the form of a graph, a bar, or a wave. Not sure yet, but I got 11 months to figure that out.
+
+## How to use it
+
+You'll have to setup a few things
+
+- Create a Telegram bot using @BotFather and get the API key, and message ID with you
+- Provide those values using `TELEGRAM_TOKEN` and `TELEGRAM_CHAT_ID`
+- And host it on any server, like Heroku, and use the scheduler feature to call `rake morning`, `rake noon` and `rake evening`
