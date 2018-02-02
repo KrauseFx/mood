@@ -3,7 +3,7 @@ require "yaml"
 require "logger"
 require "json"
 require_relative "./database"
-require_relative "./mail_handler"
+require_relative "./telegram_handler"
 
 enable :logging
 
@@ -13,14 +13,4 @@ get "/" do
   erb :index
 end
 
-post "/" do
-  puts "hi"
-  logger.info JSON.pretty_generate(params)
-
-  # rating = 8 # TODO: replace with actual rating
-  db = Mood::Database.database
-  db[:moods].insert({
-    time: Time.now,
-    value: rating
-  })
-end
+Mood::TelegramHandler.listen

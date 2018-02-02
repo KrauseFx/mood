@@ -1,13 +1,20 @@
 task :morning do
-  require_relative "./mail_handler"
-  Mood::MailHandler.send_question(
-    subject: "🌆 How are you feeling this morning?"
+  require_relative "./telegram_handler"
+  Mood::TelegramHandler.send_question(
+    message: "🌆 How are you feeling this morning?"
+  )
+end
+
+task :noon do
+  require_relative "./telegram_handler"
+  Mood::TelegramHandler.send_question(
+    message: "🏙 How are you feeling today?"
   )
 end
 
 task :evening do
-  require_relative "./mail_handler"
-  Mood::MailHandler.send_question(
-    subject: "🌃 How happy were you with today?"
+  require_relative "./telegram_handler"
+  Mood::TelegramHandler.send_question(
+    message: "🌃 How happy were you with today?"
   )
 end
