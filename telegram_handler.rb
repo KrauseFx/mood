@@ -25,16 +25,18 @@ module Mood
     def self.listen
       self.perform_with_bot do |bot|
         bot.listen do |message|
+          db = Mood::Database.database
           if message.text.to_i > 0 || message.text.strip.start_with?("0")
             # As 0 is also a valid value
             rating = message.text.to_i
 
-            db = Mood::Database.database
             db[:moods].insert({
               time: Time.now,
               value: rating
             })
             bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
+          elsif message.text == "/stats"
+            bot.api.send_message(chat_id: message.chat.id, text: "The average rate is: #{db[:moods].avg(:value).to_f}")
           else
             bot.api.send_message(chat_id: message.chat.id, text: "Sorry, I don't understand what you're saying, #{message.from.first_name}")
           end
