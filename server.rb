@@ -7,8 +7,6 @@ require_relative "./telegram_handler"
 
 enable :logging
 
-set(:port, ENV["PORT"]) if ENV["PORT"].to_s.length > 0
-
 get "/" do
   db = Mood::Database.database
   @moods = db[:moods]
