@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem "sinatra"
-gem "sendgrid-ruby"
+gem "telegram-bot-ruby"
 gem "pg"
 gem "sequel"
 gem "rake"
