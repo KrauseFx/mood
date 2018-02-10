@@ -1,4 +1,6 @@
 require 'telegram/bot'
+require 'tempfile'
+require 'gruff'
 
 module Mood
   class TelegramHandler
@@ -25,23 +27,48 @@ module Mood
     def self.listen
       self.perform_with_bot do |bot|
         bot.listen do |message|
-          db = Mood::Database.database
           if message.text.to_i > 0 || message.text.strip.start_with?("0")
             # As 0 is also a valid value
             rating = message.text.to_i
 
-            db[:moods].insert({
+            Mood::Database.database[:moods].insert({
               time: Time.now,
               value: rating
             })
             bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
-          elsif message.text == "/stats"
-            bot.api.send_message(chat_id: message.chat.id, text: "The average rate is: #{db[:moods].avg(:value).to_f}")
           else
-            bot.api.send_message(chat_id: message.chat.id, text: "Sorry, I don't understand what you're saying, #{message.from.first_name}")
+            self.handle_input(bot, message)
           end
         end
       end
+    end
+
+    def self.handle_input(bot, message)
+      case message.text
+        when "/stats"
+          avg = Mood::Database.database[:moods].avg(:value).to_f.round(2)
+          bot.api.send_message(chat_id: message.chat.id, text: "The average rate is: #{avg}")
+        when "/graph"
+          file = Tempfile.new("graph")
+          file_path = "#{file.path}.png"
+          moods = Mood::Database.database[:moods]
+
+          g = Gruff::Line.new
+          g.title = "Your mood"
+          g.theme = {
+            background_colors: %w(#eeeeee #eeeeee),
+            background_direction: :top_bottom,
+          }
+          g.data(:mood, moods.collect { |m| m[:value] })
+          g.write(file_path)
+
+          bot.api.send_photo(
+            chat_id: message.chat.id, 
+            photo: Faraday::UploadIO.new(file_path, 'image/png')
+          )
+        else
+          bot.api.send_message(chat_id: message.chat.id, text: "Sorry, I don't understand what you're saying, #{message.from.first_name}")
+        end
     end
 
     def self.chat_id

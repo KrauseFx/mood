@@ -13,6 +13,8 @@ GEM
     equalizer (0.0.11)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
+    gruff (0.7.0)
+      rmagick (~> 2.13, >= 2.13.4)
     ice_nine (0.11.2)
     inflecto (0.0.2)
     method_source (0.9.0)
@@ -26,6 +28,7 @@ GEM
     rack-protection (2.0.0)
       rack
     rake (12.3.0)
+    rmagick (2.16.0)
     sequel (5.5.0)
     sinatra (2.0.0)
       mustermann (~> 1.0)
@@ -48,6 +51,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  gruff
   pg
   pry
   rake
