@@ -19,28 +19,18 @@ GEM
     inflecto (0.0.2)
     method_source (0.9.0)
     multipart-post (2.0.0)
-    mustermann (1.0.1)
     pg (1.0.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rack (2.0.4)
-    rack-protection (2.0.0)
-      rack
     rake (12.3.0)
     rmagick (2.16.0)
     sequel (5.5.0)
-    sinatra (2.0.0)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.0)
-      tilt (~> 2.0)
     telegram-bot-ruby (0.8.6.1)
       faraday
       inflecto
       virtus
     thread_safe (0.3.6)
-    tilt (2.0.8)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -56,7 +46,6 @@ DEPENDENCIES
   pry
   rake
   sequel
-  sinatra
   telegram-bot-ruby
 
 BUNDLED WITH

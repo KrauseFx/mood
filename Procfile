@@ -1,1 +1,1 @@
-worker: bundle exec rackup config.ru
+worker: bundle exec ruby server.rb
