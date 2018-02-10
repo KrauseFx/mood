@@ -1,3 +1,4 @@
+require_relative './database'
 require 'telegram/bot'
 require 'tempfile'
 require 'gruff'
@@ -31,11 +32,15 @@ module Mood
             # As 0 is also a valid value
             rating = message.text.to_i
 
-            Mood::Database.database[:moods].insert({
-              time: Time.now,
-              value: rating
-            })
-            bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
+            if rating >= 0 && rating <= 5
+              Mood::Database.database[:moods].insert({
+                time: Time.now,
+                value: rating
+              })
+              bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
+            else
+              bot.api.send_message(chat_id: message.chat.id, text: "Only values from 0 to 5 are allowed")
+            end
           else
             self.handle_input(bot, message)
           end
