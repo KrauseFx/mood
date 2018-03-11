@@ -5,4 +5,5 @@ gem "pg"
 gem "sequel"
 gem "rake"
 gem "pry"
-gem "gruff" # sorry, but this requires ImageMagick :(
+gem "sinatra"
+gem "gruff" # sorry, but this requires ImageMagick :( Used for the graph
