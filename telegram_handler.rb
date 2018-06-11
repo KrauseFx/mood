@@ -28,7 +28,7 @@ module Mood
     def self.listen
       self.perform_with_bot do |bot|
         bot.listen do |message|
-          if message.text.to_i > 0 || message.text.strip.start_with?("0")
+          if message.text.to_s.to_i > 0 || message.text.to_s.strip.start_with?("0")
             # As 0 is also a valid value
             rating = message.text.to_i
 
