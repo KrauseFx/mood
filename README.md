@@ -63,3 +63,4 @@ You'll have to setup a few things
 - Create a Telegram bot using @BotFather and get the API key, and message ID with you
 - Provide those values using `TELEGRAM_TOKEN` and `TELEGRAM_CHAT_ID`
 - And host it on any server, like Heroku, and use the Heroku scheduler feature to call `rake morning`, `rake noon` and `rake evening`
+- Make sure to enable the Heroku worker is enabled
