@@ -34,7 +34,7 @@ module Mood
 
             if rating >= 0 && rating <= 5
               Mood::Database.database[:moods].insert({
-                time: Time.now,
+                time: Time.at(message.date),
                 value: rating
               })
               bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
