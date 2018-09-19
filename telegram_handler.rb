@@ -71,6 +71,10 @@ module Mood
             chat_id: message.chat.id, 
             photo: Faraday::UploadIO.new(file_path, 'image/png')
           )
+        when "/notes"
+          Mood::Database.database[:notes].each do |n|
+            bot.api.send_message(chat_id: message.chat.id, text: "#{n[:time].strftime("%Y-%m-%d")}: #{n[:note]}")
+          end
         when /\/note\ /
           note_content = message.text.split("/note ").last
           Mood::Database.database[:notes].insert({
