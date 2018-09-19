@@ -13,6 +13,14 @@ module Mood
         end
       end
 
+      unless @_db.table_exists?("notes")
+        @_db.create_table :notes do
+          primary_key :id
+          DateTime :time
+          String :note
+        end
+      end
+
       return @_db
     end
   end

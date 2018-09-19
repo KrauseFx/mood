@@ -71,6 +71,13 @@ module Mood
             chat_id: message.chat.id, 
             photo: Faraday::UploadIO.new(file_path, 'image/png')
           )
+        when /\/note\ /
+          note_content = message.text.split("/note ").last
+          Mood::Database.database[:notes].insert({
+            time: Time.at(message.date),
+            note: note_content
+          })
+          bot.api.send_message(chat_id: message.chat.id, text: "Got it! I'll forever remember this note for you 📚")
         else
           bot.api.send_message(chat_id: message.chat.id, text: "Sorry, I don't understand what you're saying, #{message.from.first_name}")
         end
