@@ -38,6 +38,15 @@ module Mood
                 value: rating
               })
               bot.api.send_message(chat_id: message.chat.id, text: "Got it! It's marked in the books 📚")
+
+              if rating <= 1
+                bot.api.send_message(chat_id: message.chat.id, text: "Feeling down sometimes is okay. Maybe take 2 minutes to reflect on why you're not feeling better, and optionally add a /note")
+                bot.api.send_message(chat_id: message.chat.id, text: "Sending hugs 🤗🤗🤗")
+              end
+
+              if rating == 5
+                bot.api.send_message(chat_id: message.chat.id, text: "💫 Awesome to hear, maybe take 2 minutes to reflect on why you're feeling great, and optionally add a /note")
+              end
             else
               bot.api.send_message(chat_id: message.chat.id, text: "Only values from 0 to 5 are allowed")
             end
