@@ -49,6 +49,10 @@ module Mood
     end
 
     def self.handle_input(bot, message)
+      # This is for all the trolls that add the bot to some group conversations
+      # or try to text your bot
+      return if message.chat.id != self.chat_id
+
       case message.text
         when "/stats"
           avg = Mood::Database.database[:moods].avg(:value).to_f.round(2)
