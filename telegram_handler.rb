@@ -60,7 +60,10 @@ module Mood
     def self.handle_input(bot, message)
       # This is for all the trolls that add the bot to some group conversations
       # or try to text your bot
-      return if message.chat.id != self.chat_id
+      if message.chat.id != self.chat_id
+        puts "Chat ID #{message.chat.id} doesn't match the provided Chat ID #{self.chat_id}"
+        return
+      end
 
       case message.text
         when "/stats"
