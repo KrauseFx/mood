@@ -73,7 +73,14 @@ module Mood
           number_of_months = (Time.now - first_mood) / 60.0 / 60.0 / 24.0 / 30.0
           average_number_of_moods = (total_moods / number_of_months) / 30.0
 
-          bot.api.send_message(chat_id: message.chat.id, text: "The average mood is: #{avg}")
+          # Calculates the 7d and 30d average of the last days
+          avg_7d = Mood::Database.database[:moods].where(time: (Date.today - 7)..Date.today).avg(:value).to_f.round(2)
+          avg_30d = Mood::Database.database[:moods].where(time: (Date.today - 30)..Date.today).avg(:value).to_f.round(2)
+
+          bot.api.send_message(chat_id: message.chat.id, text: "The average mood of all time is: #{avg}")
+          bot.api.send_message(chat_id: message.chat.id, text: "The 30d average mood is: #{avg_30d}")
+          bot.api.send_message(chat_id: message.chat.id, text: "The 7d average mood is: #{avg_7d}")
+
           bot.api.send_message(chat_id: message.chat.id, text: "Total tracked moods: #{total_moods}")
           bot.api.send_message(chat_id: message.chat.id, text: "Number of months tracked: #{number_of_months.round(1)}")
           bot.api.send_message(chat_id: message.chat.id, text: "Averaging #{average_number_of_moods.round(1)} per day")
