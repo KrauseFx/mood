@@ -1,3 +1,7 @@
+### [deprecated] I'm now using [FxLifeSheet](https://github.com/krausefx/fxlifesheet) for my mood tracking
+
+---
+
 # mood 
 
 <img src="/assets/screenshot.png" width="300" align="right"/>
